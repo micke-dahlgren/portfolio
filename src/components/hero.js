@@ -1,9 +1,13 @@
 import React from 'react'
 import Img from 'gatsby-image'
-
+import {renderRichText}  from '@contentful/rich-text-types'
 import styles from './hero.module.css'
 
-export default ({ data }) => (
+
+
+export default ({ data }) => {
+  console.log(data.about.about)
+  return(
   <div className={styles.hero}>
     <Img
       className={styles.heroImage}
@@ -13,7 +17,8 @@ export default ({ data }) => (
     <div className={styles.heroDetails}>
       <h3 className={styles.heroHeadline}>{data.name}</h3>
       <p className={styles.heroTitle}>{data.title}</p>
-      <p>{data.shortBio.shortBio}</p>
+      <div>about me</div>
     </div>
   </div>
 )
+  }
