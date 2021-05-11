@@ -1,6 +1,4 @@
 import React from 'react'
-import './base.css'
-import Container from './container'
 import Navigation from './navigation'
 
 class Template extends React.Component {
@@ -8,10 +6,10 @@ class Template extends React.Component {
     const { children } = this.props
 
     return (
-      <Container>
+      <div className="layout">
         <Navigation />
         {children}
-      </Container>
+      </div>
     )
   }
 }

@@ -39,7 +39,11 @@ module.exports = {
     title: "Gatsby Contentful starter",
   },
   pathPrefix: "/gatsby-contentful-starter",
+  flags: {
+    DEV_SSR: true
+  },
   plugins: [
+    "gatsby-plugin-sass",
     "gatsby-transformer-remark",
     "gatsby-transformer-sharp",
     "gatsby-plugin-react-helmet",
@@ -49,4 +53,5 @@ module.exports = {
       options: contentfulConfig,
     },
   ],
+  
 };
