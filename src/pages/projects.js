@@ -22,7 +22,7 @@ class Projects extends React.Component {
 export default Projects
 
 export const pageQuery = graphql`
-  query projectQuery { allContentfulProject {
+  query projectQuery { allContentfulProject(sort: {fields: createdAt, order: DESC}) {
     edges {
       node {
         id
@@ -33,7 +33,7 @@ export const pageQuery = graphql`
         }
         heroImage {
           fluid(quality:100, maxHeight: 800, maxWidth: 800, resizingBehavior: PAD) {
-            srcSetWebp
+            ...GatsbyContentfulFluid_tracedSVG
           }
         }
       }
