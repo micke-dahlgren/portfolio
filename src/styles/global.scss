@@ -1,0 +1,12 @@
+@use './mixins' ;
+
+*{
+  @extend %normalize-html;
+}
+
+html{
+  @extend %color-scheme;
+  @extend %font;
+  @extend %main-container;
+  @extend %button-shape;
+}

@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import get from 'lodash/get'
 import { Helmet } from 'react-helmet'
 
+
 //components
 import Layout from '../components/layout'
 import Hero from '../components/home/hero'

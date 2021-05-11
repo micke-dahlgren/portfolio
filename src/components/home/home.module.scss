@@ -1,0 +1,20 @@
+@use '../../styles/variables';
+
+@mixin flex($direction:row,$justify:center,$align:center) {
+  display:flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+.hero{
+  @include flex();
+  p{
+    color: variables.$neutral-gray;
+  }
+  a{
+    color:variables.$primary;
+    text-decoration: none;
+    font-weight: bold;
+  }
+}

@@ -1,0 +1,24 @@
+/* Colors */
+$bg-col:white;
+$primary: #4151B5;
+$primary-dark: #21253D;
+$neutral-gray:#696969;
+$button-colors: (
+  "default-bg": linear-gradient(80deg, $bg-col 20%, $bg-col 90%),
+  "default-bg-fallback": $bg-col,
+  "default-col": $primary-dark, 
+  "primary-bg": linear-gradient(80deg, #FF3358 20%, #FF7033 90%),
+  "primary-bg-fallback": #FF3358,
+  "primary-col": white, 
+  "secondary-bg": linear-gradient(80deg, #333F89 20%, #4151B5 90%),
+  "secondary-bg-fallback": #333F89,
+  "secondary-col": white, 
+);
+
+$font-sizes: (
+  "h1": 2.441rem,
+  "h2": 1.953rem,
+  "h3":1.563rem,
+  "h4":1.25rem,
+  "p":1rem,
+);
