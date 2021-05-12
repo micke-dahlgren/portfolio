@@ -21,7 +21,7 @@ export default () => (
       </ul>
     </nav>
     <div className={styles.buttonContainer}>
-      <button className="primary" onClick={() => alert('hi')}>Contact me</button>
+      <button className="cta" onClick={() => alert('hi')}>Contact me</button>
     </div>
   </div>
 )

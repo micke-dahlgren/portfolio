@@ -1,9 +1,5 @@
-@mixin flex($direction:row,$justify:center,$align:center) {
-  display:flex;
-  flex-direction: $direction;
-  justify-content: $justify;
-  align-items: $align;
-}
+@use '../scss/0-abstracts/mixins';
+
 
 %removeListStyling{
   padding: 0;
@@ -30,13 +26,13 @@
 }
 
 .header{
-  @include flex(row, space-between);
+  @include mixins.flex(row, space-between);
   height:100px;
   margin: 16px 0;
 }
 
 .navigation {
-  @include flex(row);
+  @include mixins.flex(row);
   @extend %removeListStyling;
   @extend %navigationVisuals;
 }

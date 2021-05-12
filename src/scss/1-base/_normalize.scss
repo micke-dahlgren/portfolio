@@ -1,0 +1,61 @@
+html{
+  box-sizing: border-box;
+  margin:0;
+  
+  article,
+    aside,
+    footer,
+    header,
+    nav,
+    section,
+    figcaption,
+    figure{
+      display: block;
+    }
+
+    /*
+     * 1. Remove the gray background on active links in IE 10.
+     * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.
+     */
+    a {
+      background-color: transparent; /* 1 */
+      -webkit-text-decoration-skip: objects; /* 2 */
+    }
+
+     /**
+     * 1. Add the correct box sizing in Firefox.
+     * 2. Show the overflow in Edge and IE.
+     */
+     hr {
+      box-sizing: content-box; /* 1 */
+      height: 0; /* 1 */
+      overflow: visible; /* 2 */
+    }
+
+        /**
+     * 1. Correct the inheritance and scaling of font size in all browsers.
+     * 2. Correct the odd `em` font sizing in all browsers.
+     */
+
+     code,
+     kbd,
+     samp {
+       font-family: monospace, monospace; /* 1 */
+       font-size: 1em; /* 2 */
+     }
+      /**
+     * Remove the border on images inside links in IE 10-.
+     */
+
+     img {
+      border-style: none;
+    }
+
+    /**
+     * Hide the overflow in IE.
+     */
+
+    svg:not(:root) {
+      overflow: hidden;
+    }
+}

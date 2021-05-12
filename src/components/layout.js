@@ -1,6 +1,6 @@
 import React from 'react'
 import Navigation from './navigation'
-import '../styles/global.scss'
+import '../scss/main.scss'
 class Template extends React.Component {
   render() {
     const { children } = this.props

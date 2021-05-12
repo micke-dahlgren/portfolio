@@ -1,0 +1,27 @@
+
+$bg-col:white;
+$primary: #4151B5;
+$primary-gradient: #333F89;
+$primary-dark: #21253D;
+$cta: #FF3358;
+$cta-gradient: #FF7033;
+$neutral-gray:#696969;
+$white: white;
+
+$button-colors: (
+  default:(
+    bg-1: $bg-col,
+    bg-2: $bg-col,
+    col: $primary-dark, 
+  ),
+  cta:(
+    bg-1: $cta,
+    bg-2: $cta-gradient,
+    col: $white, 
+  ),
+  primary:(
+    bg-1: $primary-gradient,
+    bg-2: $primary,
+    col: $white, 
+  ),
+);

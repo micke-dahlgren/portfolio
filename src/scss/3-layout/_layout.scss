@@ -1,0 +1,11 @@
+
+/* currently not in use */
+
+%main-container{
+  display:grid;
+  justify-content: center;
+  padding-left: calc(100vw - 100%);
+  .layout{
+    width:900px; //do media queries
+  }
+}

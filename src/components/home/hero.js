@@ -7,7 +7,7 @@ import styles from './home.module.scss'
 const RICHTEXT_OPTIONS = {
   renderNode: {
     [BLOCKS.PARAGRAPH] : (node,children) => {
-      return <p>{children}</p>
+      return <p className="alt">{children}</p>
     },
     [INLINES.HYPERLINK]: (node, children) => {
       return <a href={node.data.uri}>{children}</a>
@@ -22,7 +22,7 @@ const Hero = ({hero}) => {
         <h1>{hero.tagline[0]}</h1>
         <h1>{hero.tagline[1]}</h1>
         {documentToReactComponents(hero.about.json, RICHTEXT_OPTIONS)}
-        <button className="secondary" onClick={() => alert('hi')}>My work</button>
+        <button className="primary" onClick={() => alert('hi')}>My work</button>
       </div>
       <Img
         alt="some alt"

@@ -1,0 +1,57 @@
+@use '../0-abstracts/variables';
+@use '../0-abstracts/functions';
+@use "sass:map";
+
+
+@function get-color($variant:'default', $color:'col'){
+  @return functions.map-deep-get(variables.$button-colors, $variant, $color);
+}
+
+@function gradient($col-1:black,$col-2:white){
+  @return linear-gradient(
+    80deg, 
+    $col-1 20%, 
+    $col-2 90%
+    );
+}
+
+@mixin colors($variant:'default'){
+  background: get-color($variant, "bg-1");
+  background-image: gradient(
+    get-color($variant, "bg-1"), 
+    get-color($variant, "bg-2")
+    );
+  color:  get-color($variant, "col");
+  border: 1px solid  get-color($variant, "col");
+  &:hover{
+    background: darken(get-color($variant, "bg-1"),10%);
+    background-image: gradient(
+      darken(get-color($variant, "bg-1"),10%),
+      darken(get-color($variant, "bg-2"),10%));
+  }
+}
+
+%button-colors{
+  @include colors('default');
+  &.primary{
+    @include colors('primary')
+  }
+  &.cta{
+    @include colors('cta')
+  }
+}
+
+%button-shape{
+  padding: 0.75rem 1.5rem;
+  border-radius: 3rem;
+}
+
+%button-behaviour{
+  cursor: pointer;
+}
+
+button{
+  @extend %button-colors;
+  @extend %button-shape;
+  @extend %button-behaviour;
+}
