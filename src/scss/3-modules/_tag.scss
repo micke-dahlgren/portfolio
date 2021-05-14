@@ -1,0 +1,33 @@
+@use '../0-abstracts' as ab;
+
+$height: 32px;
+
+%tag-shape{
+  border-radius: $height;
+  height:$height;
+  width:100%;
+}
+
+%tag-visuals{
+  background: ab.$bg-col;
+  color: ab.$primary-dark;
+  &.tag--alt{
+   background: ab.$primary-dark; 
+   color: ab.$bg-col; 
+  }
+}
+%tag-typography{
+  font-size: 0.875rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.tag{
+ @extend %tag-visuals; 
+ @extend %tag-shape; 
+ @include ab.center-children;
+ &__text{
+
+  @extend %tag-typography;
+ }
+}

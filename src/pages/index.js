@@ -10,6 +10,7 @@ import Hero from '../components/home/hero'
 import Bio from '../components/home/bio'
 
 class RootIndex extends React.Component {
+  
   render() {
 
     const hero = get(this, 'props.data.contentfulHero')

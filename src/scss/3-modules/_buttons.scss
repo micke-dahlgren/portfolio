@@ -1,7 +1,5 @@
 @use '../0-abstracts' as ab;
 
-
-
 @function get-color($variant:'default', $color:'col'){
   @return ab.map-deep-get(ab.$button-colors, $variant, $color);
 }
@@ -47,10 +45,12 @@
 
 %button-behaviour{
   cursor: pointer;
+  white-space: nowrap;
 }
 
 button{
   @extend %button-colors;
   @extend %button-shape;
   @extend %button-behaviour;
+  margin: auto!important;
 }

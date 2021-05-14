@@ -41,7 +41,7 @@ const RICHTEXT_OPTIONS = {
 class BlogPostTemplate extends React.Component {
   render() {
     const blogpost = get(this.props, "data.contentfulBlogPost");
-    console.log(blogpost)
+
     return (
       <Layout location={this.props.location}>
         <h1>{blogpost.title}</h1>

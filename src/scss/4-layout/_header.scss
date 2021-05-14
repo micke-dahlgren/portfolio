@@ -1,8 +1,8 @@
 @use '../0-abstracts' as ab;
 
-$debug: true;
+$debug: false;
 
-%removeListStyling {
+%remove-list-styling {
   margin:0;
   & > * {
     list-style-type: none;
@@ -12,42 +12,68 @@ $debug: true;
   }
 }
 
-%navigationVisuals {
+%menu-visuals {
   padding-right: 1rem;
+}
 
-  .navigation-item {
-    margin: 0 1em;
-    text-align: center;
-    flex-grow: 0;
+%menu-alignment{
+  @include ab.flex($justify: flex-end);
+}
+
+%menu__item-visuals {
+  font-weight:bold;
+  a{
+    color:ab.$neutral-gray;
+  }
+  &:hover{
+    a{
+      color:ab.$primary;
+    }
+  }
+  
+  &.item--active{
+    a{
+      color:ab.$primary;
+    }
   }
 }
 
 
+
+%menu__item-alignment {
+  font-weight:bold;
+  margin: 0 1em;
+  text-align: center;
+  flex-grow: 0;
+}
+
 .header {
   @include ab.flex($justify: space-between);
   height: ab.$header-height;
-
+  &__button-container { 
+    @include ab.center-children;
+  }
+  /*--VISUALIZER--*/
   @if $debug {
     outline: 1px solid red;
     * {
-        outline: 1px solid red;
+        outline: 1px solid rgb(255, 0, 255);
     }
   }
 }
 
 .navigation {
-  flex-grow: 1;
   height:100%;
-
-  .navigation-item-container {
+  flex-grow: 1;
+  &__menu {
     height:100%;
-    @extend %removeListStyling;
-    @include ab.flex($justify: flex-end, $grow: 1, $shrink: 0);
-    @extend %navigationVisuals;
+    @extend %remove-list-styling;
+    @extend %menu-visuals;
+    @extend %menu-alignment;
+    &__item {
+      @extend %menu__item-visuals;
+      @extend %menu__item-alignment;
+    }
   }
 }
 
-.buttonContainer {
-  height:100%;
-  @include ab.center-children;
-}

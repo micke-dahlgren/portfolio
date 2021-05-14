@@ -1,7 +1,7 @@
 import React from "react";
 import Img from "gatsby-image";
 const ProjectLink = ({ project }) => {
-  console.log(project);
+
   return (
     <a key={project.id} href={'/projects/'+project.slug}>
       <div>

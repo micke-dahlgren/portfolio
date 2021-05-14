@@ -1,8 +1,9 @@
-@mixin flex($direction:row,$justify:center,$align:center, $grow:0, $shrink:1) {
+@mixin flex($direction:row,$justify:center,$align:center, $grow:0, $shrink:1, $wrap:nowrap) {
   display:flex;
   flex-direction: $direction;
   justify-content: $justify;
   align-items: $align;
+  flex-wrap: $wrap;
   & > * {
     flex-grow: $grow;
     flex-shrink: $shrink;
