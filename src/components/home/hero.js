@@ -2,7 +2,6 @@ import React from 'react'
 import Img from 'gatsby-image'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import {BLOCKS, INLINES} from '@contentful/rich-text-types'
-import styles from './home.module.scss'
 
 const RICHTEXT_OPTIONS = {
   renderNode: {
@@ -17,7 +16,7 @@ const RICHTEXT_OPTIONS = {
 
 const Hero = ({hero}) => {
     return(
-    <section className={styles.hero}>
+    <section className="hero">
       <div>
         <h1>{hero.tagline[0]}</h1>
         <h1>{hero.tagline[1]}</h1>

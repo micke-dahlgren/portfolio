@@ -1,5 +1,5 @@
 import React from 'react'
-import Navigation from './navigation'
+import Header from './header'
 import '../scss/main.scss'
 class Template extends React.Component {
   render() {
@@ -7,7 +7,7 @@ class Template extends React.Component {
 
     return (
       <div className="layout">
-        <Navigation />
+        <Header />
         {children}
       </div>
     )

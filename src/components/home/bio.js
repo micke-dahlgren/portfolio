@@ -9,7 +9,7 @@ const getSkills = (skills) => {
 const Bio = ({ bio }) => {
   let bioParagraph = bio.bio.bio
   return (
-    <div>
+    <div key="ABC">
       <h1>{bio.title}</h1>
       <p>{bioParagraph}</p>
 			<p><b>Here are a few technologies I've been working with recently:</b></p>

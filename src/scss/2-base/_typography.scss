@@ -1,0 +1,27 @@
+@use '../0-abstracts' as ab;
+@use "sass:map";
+
+*{
+  font-family:ab.$default-font;
+  font-size: map.get(ab.$font-sizes, "p");
+}
+
+h1{
+  font-size: map.get(ab.$font-sizes, "h1");
+}
+h2{
+  font-size: map.get(ab.$font-sizes, "h2");
+}
+h3{
+  font-size: map.get(ab.$font-sizes, "h3");
+}
+h4{
+  font-size: map.get(ab.$font-sizes, "h4");
+}
+p{
+  line-height: 180%;
+}
+button{
+  font-family:ab.$default-font;
+  font-weight: bold;
+}

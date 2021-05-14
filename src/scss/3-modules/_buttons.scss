@@ -1,10 +1,9 @@
-@use '../0-abstracts/variables';
-@use '../0-abstracts/functions';
-@use "sass:map";
+@use '../0-abstracts' as ab;
+
 
 
 @function get-color($variant:'default', $color:'col'){
-  @return functions.map-deep-get(variables.$button-colors, $variant, $color);
+  @return ab.map-deep-get(ab.$button-colors, $variant, $color);
 }
 
 @function gradient($col-1:black,$col-2:white){
@@ -15,7 +14,7 @@
     );
 }
 
-@mixin colors($variant:'default'){
+@mixin get-button-colors($variant:'default'){
   background: get-color($variant, "bg-1");
   background-image: gradient(
     get-color($variant, "bg-1"), 
@@ -32,12 +31,12 @@
 }
 
 %button-colors{
-  @include colors('default');
+  @include get-button-colors('default');
   &.primary{
-    @include colors('primary')
+    @include get-button-colors('primary')
   }
   &.cta{
-    @include colors('cta')
+    @include get-button-colors('cta')
   }
 }
 

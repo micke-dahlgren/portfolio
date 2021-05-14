@@ -1,0 +1,53 @@
+@use '../0-abstracts' as ab;
+
+$debug: true;
+
+%removeListStyling {
+  margin:0;
+  & > * {
+    list-style-type: none;
+    a {
+      text-decoration: none;
+    }
+  }
+}
+
+%navigationVisuals {
+  padding-right: 1rem;
+
+  .navigation-item {
+    margin: 0 1em;
+    text-align: center;
+    flex-grow: 0;
+  }
+}
+
+
+.header {
+  @include ab.flex($justify: space-between);
+  height: ab.$header-height;
+
+  @if $debug {
+    outline: 1px solid red;
+    * {
+        outline: 1px solid red;
+    }
+  }
+}
+
+.navigation {
+  flex-grow: 1;
+  height:100%;
+
+  .navigation-item-container {
+    height:100%;
+    @extend %removeListStyling;
+    @include ab.flex($justify: flex-end, $grow: 1, $shrink: 0);
+    @extend %navigationVisuals;
+  }
+}
+
+.buttonContainer {
+  height:100%;
+  @include ab.center-children;
+}

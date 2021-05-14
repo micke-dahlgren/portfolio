@@ -1,0 +1,17 @@
+
+@use '../0-abstracts/' as ab;
+
+%center-page-content{
+  display:grid;
+  justify-content: center;
+  
+  //avoid jumpy behaviour on scrollbar appearance
+  padding-left: calc(100vw - 100%);
+}
+
+.layout{
+  @extend %center-page-content;
+  & > * {
+    width: ab.$content-width;
+  }
+}

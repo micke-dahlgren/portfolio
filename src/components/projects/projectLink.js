@@ -3,7 +3,7 @@ import Img from "gatsby-image";
 const ProjectLink = ({ project }) => {
   console.log(project);
   return (
-    <a href={'/projects/'+project.slug}>
+    <a key={project.id} href={'/projects/'+project.slug}>
       <div>
         <Img
           alt="some alt"

@@ -3,7 +3,7 @@ import Img from "gatsby-image";
 const PostLink = ({ post }) => {
 
   return (
-    <a href={'/blog/'+post.slug}>
+    <a key={post.id} href={'/blog/'+post.slug}>
       <div>
         <Img
           alt="some alt"
