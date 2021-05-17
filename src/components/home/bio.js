@@ -1,5 +1,5 @@
 import React from "react";
-import './bio.modules.scss';
+import './bio.scss';
 
 const getSkills = (skills) => {
 	return skills.map((e,i) => (

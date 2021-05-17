@@ -1,4 +1,6 @@
 @use '../../scss/0-abstracts' as ab;
+$debug: false;
+
 .bio__skills{
   display: grid;
   place-items: center;
@@ -6,7 +8,4 @@
   grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
   gap:8px;
   background:ab.$primary-dark;
-  & > *{
-    outline:1px dashed red;
-  }
 }

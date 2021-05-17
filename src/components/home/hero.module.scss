@@ -1,0 +1,36 @@
+@use '../../scss/0-abstracts' as ab;
+
+$debug:false;
+$image-size: 28%;
+
+.hero {
+  overflow-x:hidden;
+  @include ab.debug($debug);
+  *{
+    @include ab.debug($debug);
+  }
+}
+
+.hero{
+  display:grid;
+  grid-template-columns: 31em $image-size;
+  justify-content:space-between;
+}
+
+.tagline{
+  @include ab.flex(column,space-between,flex-start);
+  &__header{
+    font-weight:900;
+    font-size: 48px;
+  }
+  &__paragraph{
+    margin: 20px 0;
+    color:ab.$neutral-gray;
+  }
+}
+
+
+.img{
+  text-align:bottom;
+  object-fit: 'contain';
+}

@@ -1,0 +1,45 @@
+@use '../0-abstracts' as ab;
+
+// @function margin-to-edges($content){
+//   @return calc(-1 * calc(100vw - #{$content})/2);
+// }
+
+@mixin content-width{
+  width: 80vw;
+  max-width: ab.$content-width;
+  margin:auto;
+}
+
+@mixin layout{
+  height: calc(100vh - #{ab.$header-height});
+  display:grid;
+  grid-template-rows: auto auto;
+  &__section{
+    @include content-width();
+    align-self: center;
+  }
+  &__footer{
+    width:100vw;
+    background:ab.$primary-dark;
+    & > *{
+      @include content-width();
+    }
+    img{
+      background:white;
+      min-width:100vw;
+      height:100px;
+    }
+  }
+}
+
+
+@mixin colors{
+  &__footer{
+    // background:ab.$primary-dark;
+    color:ab.$white;
+  }
+}
+.home{
+  @include layout;
+  @include colors;
+}

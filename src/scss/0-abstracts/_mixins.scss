@@ -22,3 +22,10 @@
     place-items:center start;
   }
 }
+
+@mixin debug($debug:false){
+  @if $debug {
+    outline:1px dashed red;
+    background: rgba(255,0,0,0.125);
+  }
+}

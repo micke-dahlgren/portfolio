@@ -4,15 +4,15 @@
 %center-page-content{
   display:grid;
   justify-content: center;
-  //avoid jumpy behaviour on scrollbar appearance
-  padding-left: calc(100vw - 100%);
+
 }
 
-body{
-  @extend %center-page-content;
-}
 
 .layout{
-  width: 80vw;
-  max-width: ab.$content-width;
+  min-width:100vw;
+  @extend %center-page-content;
+  & > :not(.home){
+    width: 80vw;
+    max-width: ab.$content-width;
+  }
 }

@@ -50,6 +50,9 @@ $debug: false;
 .header {
   @include ab.flex($justify: space-between);
   height: ab.$header-height;
+  width: 80vw;
+  max-width: ab.$content-width;
+  margin:auto;
   &__button-container { 
     @include ab.center-children;
   }

@@ -19,7 +19,11 @@
     get-color($variant, "bg-2")
     );
   color:  get-color($variant, "col");
-  border: 1px solid  get-color($variant, "col");
+  @if $variant == 'default'{
+    border: 1px solid  get-color($variant, "col")
+  } @else {
+    border:none;
+  }
   &:hover{
     background: darken(get-color($variant, "bg-1"),10%);
     background-image: gradient(
@@ -39,7 +43,7 @@
 }
 
 %button-shape{
-  padding: 0.75rem 1.5rem;
+  padding: 0.85rem 1.6rem;
   border-radius: 3rem;
 }
 
