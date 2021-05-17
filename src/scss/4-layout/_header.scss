@@ -1,62 +1,7 @@
 @use '../0-abstracts' as ab;
 
 $debug: false;
-
-%remove-list-styling {
-  margin:0;
-  & > * {
-    list-style-type: none;
-    a {
-      text-decoration: none;
-    }
-  }
-}
-
-%menu-visuals {
-  padding-right: 1rem;
-}
-
-%menu-alignment{
-  @include ab.flex($justify: flex-end);
-}
-
-%menu__item-visuals {
-  font-weight:bold;
-  a{
-    color:ab.$neutral-gray;
-  }
-  &:hover{
-    a{
-      color:ab.$primary;
-    }
-  }
-  
-  &.item--active{
-    a{
-      color:ab.$primary;
-    }
-  }
-}
-
-
-
-%menu__item-alignment {
-  font-weight:bold;
-  margin: 0 1em;
-  text-align: center;
-  flex-grow: 0;
-}
-
-.header {
-  @include ab.flex($justify: space-between);
-  height: ab.$header-height;
-  width: 80vw;
-  max-width: ab.$content-width;
-  margin:auto;
-  &__button-container { 
-    @include ab.center-children;
-  }
-  /*--VISUALIZER--*/
+.header{
   @if $debug {
     outline: 1px solid red;
     * {
@@ -65,18 +10,53 @@ $debug: false;
   }
 }
 
-.navigation {
-  height:100%;
-  flex-grow: 1;
-  &__menu {
-    height:100%;
-    @extend %remove-list-styling;
-    @extend %menu-visuals;
-    @extend %menu-alignment;
-    &__item {
-      @extend %menu__item-visuals;
-      @extend %menu__item-alignment;
+
+.header {
+  @include ab.flex($justify: space-between);
+  
+  @include ab.device(tablet){
+    background:pink;
+  }
+
+  @include ab.device('mobile-large'){
+    background:yellow;
+  }
+
+  @include ab.device('mobile-small'){
+    background:brown;
+  }
+
+  height: ab.$header-height;
+  max-width: ab.$content-width;
+  margin:auto;
+
+  &__button-container { 
+    @include ab.center-children;
+  }
+
+  &__logo{
+    @include ab.device(tablet){
+      background:white;
+      width:25vw;
     }
   }
 }
 
+
+%hamburger-line {
+  box-sizing: content-box;
+  background:ab.$primary-dark;
+  height:2px;
+  width:2em;
+  border-radius: 2px;
+}
+
+.hamburger{
+  height:24px;
+  cursor: pointer;
+  @include ab.flex(column,space-between);
+  &__span{
+    @extend %hamburger-line;
+  }
+  display:none;
+}

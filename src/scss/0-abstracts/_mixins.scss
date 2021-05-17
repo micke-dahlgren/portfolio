@@ -29,3 +29,24 @@
     background: rgba(255,0,0,0.125);
   }
 }
+
+@mixin device($breakpoint){
+  $size: 320px;
+  @if $breakpoint == mobile-small {
+    $size: 320px;
+  }
+  @if $breakpoint == mobile-large {
+    $size: 548px;
+  }
+  @if $breakpoint == tablet {
+    $size: 768px;
+  }
+  @if $breakpoint == desktop {
+    $size: 1024px;
+  }
+
+  @media only screen and (max-width: $size){
+    @content;
+  }
+
+}

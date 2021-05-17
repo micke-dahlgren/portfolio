@@ -5,7 +5,7 @@ $debug: false;
   display: grid;
   place-items: center;
   justify-content: space-between;
-  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-  gap:8px;
+  grid-template-columns: repeat(auto-fit, minmax(5.6rem, 1fr));
+  gap:1rem;
   background:ab.$primary-dark;
 }

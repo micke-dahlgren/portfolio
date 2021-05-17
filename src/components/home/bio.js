@@ -1,5 +1,5 @@
 import React from "react";
-import './bio.scss';
+import styles from "./bio.module.scss";
 
 const getSkills = (skills) => {
 	return skills.map((e,i) => (
@@ -10,11 +10,11 @@ const getSkills = (skills) => {
 const Bio = ({ bio }) => {
   let bioParagraph = bio.bio.bio
   return (
-    <div className="bio">
-      <h1 className="bio__header">{bio.title}</h1>
-      <p className="bio__paragraph">{bioParagraph}</p>
-			<p className="bio__paragraph"><b>Here are a few technologies I've been working with recently:</b></p>
-			<div className="bio__skills">{getSkills(bio.skills)}</div>
+    <div className={styles.bio}>
+      <h1 className={styles.bio__header}>{bio.title}</h1>
+      <p className={styles.bio__paragraph}>{bioParagraph}</p>
+			<p className={styles.bio__paragraph}><b>Here are a few technologies I've been working with recently:</b></p>
+			<div className={styles.bio__skills}>{getSkills(bio.skills)}</div>
     </div>
   );
 };

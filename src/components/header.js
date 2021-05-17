@@ -1,31 +1,32 @@
-import React from "react";
-import { Link } from "gatsby";
+import React, {useState} from "react";
+//components
+import Nav from './nav';
+
+//static
 import logo from "../../static/Logo.svg";
 
+const navItems = {
+  Home: "/",
+  Projects: "/projects",
+  Blog: "/blog",
+};
+
 const Header = (props) => {
-  const Nav = () => (
-    <nav className="navigation" role="navigation">
-      <ul className="navigation__menu">
-        {Object.keys(props.navItems).map((key) => (
-          <li
-            key={key}
-            className={
-              props.activePage === props.navItems[key]
-                ? "navigation__menu__item item--active"
-                : "navigation__menu__item"
-            }
-          >
-            <Link to={props.navItems[key]}>{key}</Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  );
+  const [hamburger, setHamburger] = useState(true);
+
+  const Hamburger = () =>(
+    <a href={void(0)} onClick={() => setHamburger(!hamburger)} className="hamburger">
+      <i className="hamburger__span" />
+      <i className="hamburger__span" />
+      <i className="hamburger__span" />
+    </a>
+  )
 
   return (
     <div className="header">
+      <Hamburger />
       <img className="header__logo" src={logo} />
-      <Nav />
+      {hamburger ? <Nav navItems={navItems} activePage={props.activePage}/> : null}
       <div className="header__button-container">
         <button className="cta" onClick={() => alert(window.location.href)}>
           Contact me

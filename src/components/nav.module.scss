@@ -1,0 +1,65 @@
+@use '../scss/0-abstracts' as ab;
+
+%remove-list-styling {
+  margin:0;
+  & > * {
+    list-style-type: none;
+    a {
+      text-decoration: none;
+    }
+  }
+}
+
+%menu-visuals {
+  padding-right: 1rem;
+  @include ab.device(tablet){
+    padding: 0;
+  }
+}
+
+%menu-alignment{
+  @include ab.flex($justify: flex-end);
+  
+  @include ab.device(tablet){
+    @include ab.flex($justify: center);
+  }
+}
+
+@mixin menu__item-visuals {
+  font-weight:bold;
+  a{
+    color:ab.$neutral-gray;
+  }
+  &:hover, 
+  &.item__active{
+    a{
+      color:ab.$primary;
+    }
+  }
+
+}
+
+%menu__item-alignment {
+  font-weight:bold;
+  margin: 0 1em;
+  text-align: center;
+  flex-grow: 0;
+}
+
+
+.navigation {
+  height:100%;
+  flex-grow: 1;
+  &__menu {
+    height:100%;
+    @extend %remove-list-styling;
+    @extend %menu-visuals;
+    @extend %menu-alignment;
+    &__item {
+      @include menu__item-visuals;
+      @extend %menu__item-alignment;
+    }
+
+  }
+}
+

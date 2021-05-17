@@ -4,15 +4,17 @@
 %center-page-content{
   display:grid;
   justify-content: center;
-
 }
 
+%content-width{
+  width: 90vw;
+  max-width: ab.$content-width;
+}
 
 .layout{
   min-width:100vw;
   @extend %center-page-content;
   & > :not(.home){
-    width: 80vw;
-    max-width: ab.$content-width;
+    @extend %content-width;
   }
 }

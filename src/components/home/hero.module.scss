@@ -1,7 +1,7 @@
 @use '../../scss/0-abstracts' as ab;
 
 $debug:false;
-$image-size: 28%;
+$image-size: min(14rem,28%);
 
 .hero {
   overflow-x:hidden;
@@ -21,10 +21,10 @@ $image-size: 28%;
   @include ab.flex(column,space-between,flex-start);
   &__header{
     font-weight:900;
-    font-size: 48px;
+    font-size: 3rem;
   }
   &__paragraph{
-    margin: 20px 0;
+    margin: 1.2rem 0;
     color:ab.$neutral-gray;
   }
 }

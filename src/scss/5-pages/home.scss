@@ -5,7 +5,7 @@
 // }
 
 @mixin content-width{
-  width: 80vw;
+  width: 90vw;
   max-width: ab.$content-width;
   margin:auto;
 }
@@ -27,7 +27,7 @@
     img{
       background:white;
       min-width:100vw;
-      height:100px;
+      height:min(100px, 8vw);
     }
   }
 }
