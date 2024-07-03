@@ -1,1 +1,0 @@
-![alt text](color-spaces.gif "Gradient from blue to yellow in different color-spaces")
