@@ -9,8 +9,10 @@
 </head>
 
 <body>
+  <div class="background-color-2"></div>
+  <div class="background-color-1"></div>
   <div class="grain"></div>
-  <header style="position:sticky; top:0;">
+  <header style="position:sticky; top:0; z-index: 10">
     <nav>
       <ul id="menu" class="flex-row" style="list-style: none;" role="menu">
         <li role="menuitem"><a href="#home">Home</a></li>
@@ -62,6 +64,13 @@
         laborum.</p>
     </section>
 
+    <a href="#home" class="back-to-top">
+      <!-- arrow up icon -->
+      <div class="container">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="var(--color-icon)"><path d="M440-160v-487L216-423l-56-57 320-320 320 320-56 57-224-224v487h-80Z"/></svg>
+      </div>
+      <div class="shadow"></div>
+    </a>
   </main>
 </body>
 
