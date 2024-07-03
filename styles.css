@@ -1,8 +1,11 @@
 /* remove margins */
 :root{
   --color-primary: #4353EB;
-  --color-secondary: #D64978;
+  --color-primary-light: #939be0;
+  --color-secondary: #F07399;
   --color-secondary-light: #F7C1CA;
+  --color-tertiary: #FFE493;
+  --color-tertiary-light: #FAEDDA;
   --color-text: #202020;
   --color-gradient-01: #f7c1ca;
   --color-gradient-02: #faf5da;
@@ -123,11 +126,9 @@ h1,h2,h3,h4,h5,h6{
 }
 
 main {
-
   max-width: 70ch;
   margin: auto;
   position:relative;
-  
 }
 
 section{
@@ -138,8 +139,8 @@ section{
   z-index:3;
   padding-top:3rem; 
   margin-bottom: 100vh;
-  opacity: 0.25;
-  scale: 0.85;
+  opacity: 0.05;
+  scale: 0.95;
   filter:blur(4px);
   animation: on-scoll-into-view ease-out forwards;
   animation-timeline: view();
@@ -251,4 +252,89 @@ section > *{
     outline:solid color-mix(in hsl, transparent 20%, var(--color-secondary)) 6px;
   }
 
+}
+
+
+.blob{
+  position:absolute;
+  width: 100%;
+  max-width: 100%;
+  height: 200%;
+  overflow: hidden;
+}
+
+.blob.debug{
+  border:2px solid red;
+  background: green;
+  & > * {
+    background:blue;
+  }
+}
+@media screen and (orientation: portrait) {
+  .blob-pos-1{
+    & > *{
+      width:100vw; /* size of blob*/
+      left:40vw;
+      top:10vh;
+    }
+  }
+
+  .blob-pos-2{
+    & > *{
+      width:100vw; /* size of blob*/
+      right:20vw;
+      top:90vh;
+    }
+  }
+
+  .blob-pos-3{
+    & > *{
+      width:100vw; /* size of blob*/
+      left:20vw;
+      top:300vh;
+    }
+  }
+
+  .blob-pos-4{
+    & > *{
+      width:100vw; /* size of blob*/
+      right:20vw;
+      top:450vh;
+    }
+  }
+}
+/* tablets and desktops */
+@media screen and (orientation: landscape) {
+  .blob-pos-1{
+    & > *{
+      width:100vh; /* size of blob*/
+      top:0;
+      left:70vw;
+      
+    }
+  }
+  .blob-pos-2{
+    & > *{
+      width:100vh; /* size of blob*/
+      right:20vw;
+      top:80vh;
+    }
+  }
+
+  
+  .blob-pos-3{
+    & > *{
+      width:100vh; /* size of blob*/
+      left:20vw;
+      top:200vh;
+    }
+  }
+
+  .blob-pos-4{
+    & > *{
+      width:100vh; /* size of blob*/
+      right:20vw;
+      top:300vh;
+    }
+  }
 }
