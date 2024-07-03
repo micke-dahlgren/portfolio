@@ -1,0 +1,85 @@
+/* remove margins */
+body,
+ul {
+  margin: 0;
+}
+
+body {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(88deg, #f7c1ca, #faf5da);
+}
+
+/* grain effect - start*/
+.grain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  z-index: 300;
+  mix-blend-mode:soft-light;
+}
+
+.grain:before {
+  content: "";
+  top: -10rem;
+  left: -10rem;
+  width: calc(100% + 20rem);
+  height: calc(100% + 20rem);
+  z-index: 1;
+  position: fixed;
+  background-image: url(noise_low_contrast.webp);
+  background-repeat: repeat;
+  
+  pointer-events: none;
+  -webkit-animation: noise 249ms steps(2) infinite;
+  animation: noise 249ms steps(2) infinite;
+}
+
+  @-webkit-keyframes noise {
+    to { transform: translate3d(-7rem,0,0) }
+  }
+
+
+  @keyframes noise {
+    from { transform: translate3d(0,9rem,0) }
+  /*  10% { transform: translate3d(-1rem,-4rem,0) }*/
+    20% { transform: translate3d(-8rem,2rem,0) }
+  /*  30% { transform: translate3d(9rem,-9rem,0) } */
+    40% { transform: translate3d(-2rem,7rem,0) }
+  /*  50% { transform: translate3d(-9rem,-4rem,0) } */
+    60% { transform: translate3d(2rem,6rem,0) }
+  /*  70% { transform: translate3d(7rem,-8rem,0) } */
+    80% { transform: translate3d(-9rem,1rem,0) }
+  /*   90% { transform: translate3d(6rem,-5rem,0) } */
+    to { transform: translate3d(-7rem,0,0) }
+  }
+
+/* grain effect - end*/
+
+.flex-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+#menu {
+  height: 3rem;
+  padding-left: 2rem;
+  font-size: small;
+}
+
+main {
+  margin-left: 2rem;
+  max-width: 60ch;
+  margin: auto;
+}
+
+section{
+  padding-top:3rem; height:80vh
+}
+section > *{
+  margin: 0 4rem;
+
+}
