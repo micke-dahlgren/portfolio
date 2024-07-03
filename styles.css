@@ -1,4 +1,10 @@
 /* remove margins */
+:root{
+ --color-gradient-01: blue;
+ --color-gradient-02: yellow;
+ --color-gradient-01: #f7c1ca;
+ --color-gradient-02: #faf5da;
+}
 body,
 ul {
   margin: 0;
@@ -6,7 +12,10 @@ ul {
 
 body {
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(88deg, #f7c1ca, #faf5da);
+  background: linear-gradient(
+    in lch 90deg, 
+    var(--color-gradient-01), 
+    var(--color-gradient-02));
 }
 
 /* grain effect - start*/
