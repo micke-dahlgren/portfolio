@@ -4,54 +4,306 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Site layout & variables is loaded here */
+
+      /* ---------- normalize.css ---------- */
+      *{box-sizing: border-box;}
+      html { line-height: 1.15; -webkit-text-size-adjust: 100%;}
+      body { margin: 0;}
+      main { display: block;}
+      h1 { font-size: 2em; margin: 0.67em 0;}
+      hr { box-sizing: content-box;height: 0;overflow: visible;}
+      a { background-color: transparent;}
+      b,strong { font-weight: bolder;}
+      code,kbd,samp { font-family: monospace, monospace;font-size: 1em;}
+      img { border-style: none;}
+      button,input,optgroup,select,textarea { font-family: inherit;font-size: 100%;line-height: 1.15;margin: 0;}
+      button,input { overflow: visible;}
+      button,select { text-transform: none;}
+      button,[type="button"],[type="reset"],[type="submit"] { -webkit-appearance: button;}
+      button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner { border-style: none; padding: 0;}
+      button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring { outline: 1px dotted ButtonText;}
+      progress { vertical-align: baseline;}
+      textarea { overflow: auto;}
+      [type="checkbox"],[type="radio"] { box-sizing: border-box; padding: 0; }[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button { height: auto;}
+      [type="search"] { -webkit-appearance: textfield; outline-offset: -2px; }
+      [type="search"]::-webkit-search-decoration { -webkit-appearance: none;}
+      ::-webkit-file-upload-button { -webkit-appearance: button; font: inherit; }
+      details { display: block;}
+      summary { display: list-item;}
+      [hidden] { display: none;}
+      ul { padding:0;list-style: none;}
+      /* variables */
+      :root { 
+        --color-primary: #4353eb;
+        --color-primary-light: #939be0;
+        --color-secondary: #f07399;
+        --color-secondary-light: #f7c1ca;
+        --color-tertiary: #ffe493;
+        --color-tertiary-light: #faedda;
+        --color-text: #202020;
+        --color-gradient-01: #f7c1ca;
+        --color-gradient-02: #faf5da;
+        --color-gradient-03: #fddb92;
+        --color-gradient-04: #f0c9b1;
+        --color-icon: rgb(27, 27, 27);
+
+        --blob-size-near--mobile: 50vh;
+        --blob-size-far--mobile: 33vh;
+        --layout-max-content-width--desktop: 1600px;
+        --layout-max-content-width--mobile: 800px;
+        --layout-site-margin--desktop: 2rem;
+        --layout-site-margin--mobile: 1rem;
+        --layout-header-height: 3rem;
+      }
+      /* ---------- Fonts ---------- */
+      html{
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+      h1,h2,h3,h4,h5,h6{
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      }
+
+      /* ---------- Background Layout ---------- */
+      .background-decorative { 
+        position: fixed;
+        top:0px;
+        left:0;
+        height: 100vh;
+        max-height: 100vh;
+        width: 100vw;
+        max-width: 100vw;
+        z-index: -1;
+
+        .background-color-1, .background-color-2{
+          position:fixed;
+          top:0;
+          left:0;
+          width:100vw;
+          height:100vh;
+          background: var(--color-gradient-01)
+        }
+
+        .blob-wrapper { 
+          background:transparent;
+          display:flex;
+          flex-direction: column;
+          justify-content: space-between;
+          width:100%;
+          height:150vh;
+        }
+        .blob{
+          width:var(--blob-size-far--mobile);
+        }
+        .blob-wrapper{
+          align-items: end;
+          .blob:first-child{
+            transform:translateX(50%) translateY(10%);
+          }
+          .blob:nth-child(2){
+            align-self: flex-start;
+            transform:translateX(-50%) scale(1);
+            width:var(--blob-size-near--mobile);
+          }
+          .blob:last-child{
+            transform:translateX(50%);
+          }
+        }
+
+        .grain {
+          position: fixed;
+          top: 0;
+          left: 0;
+          height: 100vh;
+          width: 100vw;
+          pointer-events: none;
+          z-index: 0;
+          /* use transform to hide this element before other css has loaded. */
+          transform: scale(0); 
+        }
+
+        .grain:after {
+          content: "";
+          position: fixed;
+          top: -5vmax;
+          left: -5vmax;
+          width: calc(110vmax);
+          height: calc(110vmax);
+          background-image: url(noise.svg);
+          transform: rotate(0deg);
+          background-repeat: repeat;
+          pointer-events: none;
+        }
+      }
+
+      /* ---------- Header ---------- */
+      header{
+      
+        
+        /* takes up space in document flow */
+        --header-margin-top: 1rem;
+        width:100vw;
+        height: calc(var(--layout-header-height) + var(--header-margin-top));
+        nav{
+          /* floats as a fixed element */
+          position:fixed;
+          
+          width:100vw;
+          height: var(--layout-header-height);
+          padding-left: var(--layout-site-margin--mobile);
+          padding-right: var(--layout-site-margin--mobile);
+        }
+
+    
+        & #menu{ /* menu specific */
+          height: var(--layout-header-height);
+          width:100%;
+          min-width: fit-content;
+          max-width: var(--layout-max-content-width--mobile);
+          margin: auto;
+          margin-top: var(--header-margin-top);
+          border-radius: calc(var(--layout-header-height) * 0.5);
+          /*background:white;*/
+          align-content: center;
+          white-space:nowrap;
+          position: relative;
+          background:white;
+          /* shadow */
+          &::before{
+            content:'';
+            position: absolute;
+            z-index:-1;
+            top:0px;
+            left:0px;
+            border-radius: calc(var(--layout-header-height) * 0.5);
+            width:100%;
+            height:100%;
+            background:white;
+            opacity:0.65;
+            filter:blur(18px)
+          }
+
+        }
+
+        [role="menu-item"] { 
+          display: inline-block;
+        }
+        a{
+          font-size: small;
+          color:var(--color-text);
+          text-decoration: none;
+          margin-left:1rem;
+        }
+
+        [role="menu-item"]:last-child { 
+          display: inline-block;
+          float:right;
+          a{
+            margin-left:0;
+            margin-right:1rem;
+          }
+        }
+      }
+
+      /* ---------- Content ---------- */
+      main{
+        width:100%;
+        padding:var(--layout-site-margin--mobile);
+        section{
+          margin:auto;
+          width: 100%;
+          max-width: var(--layout-max-content-width--mobile);
+        }
+      }
+
+    /* MEDIA: ----------  Desktop / Tablet ---------- */
+    @media screen and (orientation: landscape) {
+      /* ---------- Background Layout ---------- */
+      .background-decorative {     
+          .blob{
+            width:var(--blob-size-far--desktop);
+          }
+          .blob:nth-child(2){
+            width:var(--blob-size-near--desktop);
+          }
+      }
+
+      /* ---------- Header ---------- */
+      header {
+        nav{
+          padding-left: var(--layout-site-margin--desktop);
+          padding-right: var(--layout-site-margin--desktop);
+
+        }
+
+        #menu{ 
+          max-width: var(--layout-max-content-width--desktop);
+        }
+      }
+      
+      /* ---------- Content ---------- */
+      main{
+        padding:var(--layout-site-margin--desktop);
+        section{
+          max-width: var(--layout-max-content-width--desktop);
+          text-align: center;
+        }
+      }
+    }
+    </style>
   </head>
   <body>
-    <div class="background-color-2"></div>
-    <div class="background-color-1"></div>
-    <section class="blob-wrapper-1">
-      <div class="blob-container">
-        <div class="blob blob-pos-1">
-          <div class="tk-blob" style="--fill: var(--color-secondary)">
+    <section
+      class="background-decorative"
+      role="presentation"
+      aria-hidden="true"
+    >
+      <div class="background-color-2"></div>
+      <div class="background-color-1"></div>
+      <section class="blob-wrapper">
+        <div class="blob">
+          <div class="blob-animation">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 747.2 726.7">
               <path
+                fill="var(--color-secondary)"
                 d="M539.8 137.6c98.3 69 183.5 124 203 198.4 19.3 74.4-27.1 168.2-93.8 245-66.8 76.8-153.8 136.6-254.2 144.9-100.6 8.2-214.7-35.1-292.7-122.5S-18.1 384.1 7.4 259.8C33 135.6 126.3 19 228.5 2.2c102.1-16.8 213.2 66.3 311.3 135.4z"
               ></path>
             </svg>
           </div>
         </div>
-        <div class="blob blob-pos-3">
-          <div class="tk-blob" style="--fill: var(--color-secondary-light)">
+        <div class="blob">
+          <div class="blob-animation">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 747.2 726.7">
               <path
+              fill="var(--color-tertiary)"
                 d="M539.8 137.6c98.3 69 183.5 124 203 198.4 19.3 74.4-27.1 168.2-93.8 245-66.8 76.8-153.8 136.6-254.2 144.9-100.6 8.2-214.7-35.1-292.7-122.5S-18.1 384.1 7.4 259.8C33 135.6 126.3 19 228.5 2.2c102.1-16.8 213.2 66.3 311.3 135.4z"
               ></path>
             </svg>
           </div>
         </div>
-      </div>
+        <div class="blob">
+          <div class="blob-animation">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 747.2 726.7">
+              <path
+              fill="var(--color-secondary-light)"
+                
+                d="M539.8 137.6c98.3 69 183.5 124 203 198.4 19.3 74.4-27.1 168.2-93.8 245-66.8 76.8-153.8 136.6-254.2 144.9-100.6 8.2-214.7-35.1-292.7-122.5S-18.1 384.1 7.4 259.8C33 135.6 126.3 19 228.5 2.2c102.1-16.8 213.2 66.3 311.3 135.4z"
+              ></path>
+            </svg>
+
+          </div>
+        </div>
+      </section>
+      <div class="grain"></div>
     </section>
-    <section class="blob-wrapper-2">
-      <div class="blob-container">
-        <div class="blob blob-pos-2">
-          <div class="tk-blob" style="--fill: var(--color-tertiary)">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 747.2 726.7">
-              <path
-                d="M539.8 137.6c98.3 69 183.5 124 203 198.4 19.3 74.4-27.1 168.2-93.8 245-66.8 76.8-153.8 136.6-254.2 144.9-100.6 8.2-214.7-35.1-292.7-122.5S-18.1 384.1 7.4 259.8C33 135.6 126.3 19 228.5 2.2c102.1-16.8 213.2 66.3 311.3 135.4z"
-              ></path>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </section>
-    <div class="grain"></div>
-    <header style="position: sticky; top: 0; z-index: 10">
+    <header>
       <nav>
-        <ul id="menu" class="flex-row" style="list-style: none" role="menu">
-          <li role="menuitem"><a href="#home">Home</a></li>
-          <li role="menuitem"><a href="#about">About</a></li>
-          <li role="menuitem"><a href="#projects">Projects</a></li>
-          <li role="menuitem"><a href="#contact">Contact</a></li>
+        <ul id="menu" class="flex-row" role="menu">
+          <li role="menu-item"><a href="#home">Home</a></li>
+          <li role="menu-item"><a href="#about">About</a></li>
+          <li role="menu-item"><a href="#projects">Projects</a></li>
+          <li role="menu-item"><a href="#contact">Contact</a></li>
           <!DOCTYPE html>
           <html lang="en"></html>
         </ul>
@@ -126,6 +378,7 @@
         <div class="shadow"></div>
       </a>
     </main>
-    <link rel="stylesheet" href="blobz.css" />
+    <!-- <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="blobz.css" /> -->
   </body>
 </html>

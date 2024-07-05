@@ -1,25 +1,4 @@
-/* remove margins */
-:root{
-  --color-primary: #4353EB;
-  --color-primary-light: #939be0;
-  --color-secondary: #F07399;
-  --color-secondary-light: #F7C1CA;
-  --color-tertiary: #FFE493;
-  --color-tertiary-light: #FAEDDA;
-  --color-text: #202020;
-  --color-gradient-01: #f7c1ca;
-  --color-gradient-02: #faf5da;
-  --color-gradient-03: #fddb92;
-  --color-gradient-04: #f0c9b1;
-  --color-icon: rgb(27, 27, 27);
-  --animation-fade-in-offset: 100px;
-  --animation-fade-in-top-offset: 200px;
-  --animation-fade-in-bottom-offset: 100px;
-}
-body,
-ul {
-  margin: 0;
-}
+
 
 body {
   min-width:100vw;
@@ -31,7 +10,11 @@ body {
   font-size:1.25rem;
 }
 h1,h2,h3,h4,h5,h6{
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: var(--color-text);
+}
+p{
+  color: var(--color-text);
 }
 
 .background-color-1{
@@ -117,12 +100,6 @@ h1,h2,h3,h4,h5,h6{
   display: flex;
   align-items: center;
   gap: 1rem;
-}
-
-#menu {
-  height: 3rem;
-  padding-left: 2rem;
-  font-size: small;
 }
 
 main {
@@ -372,3 +349,5 @@ section > *{
     }
   }
 }
+
+
