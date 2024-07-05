@@ -77,7 +77,7 @@ h1,h2,h3,h4,h5,h6{
   height: 100%;
   width: 100%;
   pointer-events: none;
-  z-index: 300;
+  z-index: 0;
   mix-blend-mode:soft-light;
 }
 
@@ -145,7 +145,7 @@ section{
   animation: on-scoll-into-view ease-out forwards;
   animation-timeline: view();
   animation-range-start: contain;
-  animation-range-end: 40vh;
+
   /* text */
   text-align: center;
   h1{
@@ -158,10 +158,20 @@ section > *{
 }
 
 @keyframes on-scoll-into-view {
-  to{
+  40%{
     filter:blur(0px);
     opacity: 1;
     scale: 1;
+  }
+  75%{
+    filter:blur(0px);
+    opacity: 1;
+    scale: 1;
+  }
+  to{
+    filter:blur(4px);
+    opacity: 0.05;
+    scale: 0.95;
   }
 }
 
@@ -255,21 +265,61 @@ section > *{
 }
 
 
+.blob-wrapper-1, .blob-wrapper-2{
+  padding:0;
+  margin:0;
+  position:fixed;
+  top:0;
+  z-index:0;
+  mix-blend-mode:color-burn;
+  animation: scroll-test linear;
+  animation-timeline: scroll();
+}
+
+.blob-wrapper-2{
+  height: 350vh; /* makes it scroll faster*/
+}
+
+.blob-container{
+  top:-5rem;
+  left:-11vw;
+  position:relative;
+  min-width:calc(110vw);
+  height: 220vh;
+
+}
+
 .blob{
   position:absolute;
   width: 100%;
   max-width: 100%;
-  height: 200%;
+  height: 100%;
   overflow: hidden;
+
 }
 
 .blob.debug{
-  border:2px solid red;
+
   background: green;
   & > * {
     background:blue;
   }
 }
+
+@keyframes scroll-test{
+  from {
+    opacity:1;
+    filter:blur(0);
+    transform:translateY(0);
+  }
+  to {
+    opacity:1;
+    filter:blur(0);
+    transform:translateY(-50%);
+  }
+}
+
+/* mobile */
 @media screen and (orientation: portrait) {
   .blob-pos-1{
     & > *{
@@ -290,51 +340,35 @@ section > *{
   .blob-pos-3{
     & > *{
       width:100vw; /* size of blob*/
-      left:20vw;
-      top:300vh;
+      right:20vw;
+      top:120vh;
     }
   }
 
-  .blob-pos-4{
-    & > *{
-      width:100vw; /* size of blob*/
-      right:20vw;
-      top:450vh;
-    }
-  }
 }
 /* tablets and desktops */
 @media screen and (orientation: landscape) {
   .blob-pos-1{
     & > *{
-      width:100vh; /* size of blob*/
-      top:0;
-      left:70vw;
+      width:80vh; /* size of blob*/
+      left:unset;
+      right: -60vw; /* horizontal position */
+      top:0; /* vertical position */
       
     }
   }
   .blob-pos-2{
     & > *{
       width:100vh; /* size of blob*/
-      right:20vw;
-      top:80vh;
+      left:0%;  /* horizontal position */
+      top:80vh; /* vertical position */
     }
   }
-
-  
   .blob-pos-3{
     & > *{
-      width:100vh; /* size of blob*/
-      left:20vw;
-      top:200vh;
-    }
-  }
-
-  .blob-pos-4{
-    & > *{
-      width:100vh; /* size of blob*/
-      right:20vw;
-      top:300vh;
+      width:80vh; /* size of blob*/
+      left:0px;  /* horizontal position */
+      top:140vh; /* vertical position */
     }
   }
 }
