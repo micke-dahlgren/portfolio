@@ -1,35 +1,22 @@
-"""
-This script is designed to build a static HTML page by replacing custom tags
-in the source HTML file with the actual content of corresponding component files.
-It reads an input HTML file, identifies custom tags that represent components,
-and replaces these tags with the content of the corresponding component files.
-If a component file does not exist, it logs a warning and leaves the tag unchanged.
-
-Parameters:
-    index_file_path (str): Path to the input HTML file containing custom tags.
-    output_file_path (str): Path to the output HTML file where the final content will be written.
-    components_dir (str): Directory path where component files are stored.
-
-Assumptions:
-    1. The input HTML file uses custom tags in the format '<_ComponentName>' to denote components.
-    2. Each custom tag corresponds to a component file named 'ComponentName.html' in the components directory.
-    3. The components directory contains all necessary component files.
-    4. The script assumes a Unix-like environment for file path handling and directory creation.
-"""
 import os
+import shutil
 import re
 import shutil
 import hashlib
 from watchdog.observers import Observer
 from watchdog.events import LoggingEventHandler
 
-index_file_path = 'index.html'
+input_index_file_path = 'index.html'
 dist_dir = './dist/'
-output_file_path = dist_dir+'index.html'
-components_dir = './components/'
-styles_dir = './styles/'
+output_index_file_path = dist_dir+'index.html'
 
-absolute_index_file_path = os.path.abspath(index_file_path)
+components_dir = './components/'
+component_styles_output_dir_name = 'component_styles'
+
+styles_dir = './styles/'
+assets_dir = './assets/'
+
+absolute_index_file_path = os.path.abspath(input_index_file_path)
 absolute_components_dir = os.path.abspath(components_dir)
 absolute_styles_dir = os.path.abspath(styles_dir)
 
@@ -40,70 +27,78 @@ class CustomEventHandler(LoggingEventHandler):
             print("Changes detected. Rebuilding...")
             build_project()
 
-def copy_styles_to_dist():
-    # Copy all .css files from the styles directory to the dist directory
-    styles_dir = './styles/'
-    for filename in os.listdir(styles_dir):
-        if filename.endswith('.css'):
-            src_file = os.path.join(styles_dir, filename)
-            dst_file = os.path.join('./dist', filename)
-            shutil.copy(src_file, dst_file)
+import shutil
+import os
+
+import os
+import shutil
+
+def copy_directory_content(source, destination):
+    # Ensure the source directory exists
+    if not os.path.exists(source):
+        raise FileNotFoundError(f"The source directory '{source}' does not exist.")
+    
+    # Get the name of the source directory
+    source_dir_name = os.path.basename(os.path.normpath(source))
+    
+    # Create the full path for the new directory in the destination
+    new_dir_path = os.path.join(destination, source_dir_name)
+    
+    # If the destination directory already exists, delete it
+    if os.path.exists(new_dir_path):
+        shutil.rmtree(new_dir_path)
+    
+    # Create the new directory
+    os.makedirs(new_dir_path)
+    
+    # Copy all content from source to new directory in destination
+    for item in os.listdir(source):
+        source_item_path = os.path.join(source, item)
+        destination_item_path = os.path.join(new_dir_path, item)
+        
+        if os.path.isdir(source_item_path):
+            shutil.copytree(source_item_path, destination_item_path)
+        else:
+            shutil.copy2(source_item_path, destination_item_path)
+    
+    print(f"Copied content from '{source}' to '{new_dir_path}'.")
 
 def get_style_content(component_data):
     style_content = re.findall(r'<style[^>]*>(.*?)</style>', component_data, flags=re.DOTALL | re.MULTILINE)
     return ''.join(style_content)
 
-def extract_html_template(content):
-    """Extracts template content from the given HTML content."""        
+def extract_html_template(content):  
     pattern = r'<template>(.*?)</template>'
     matches = re.findall(pattern, content, flags=re.DOTALL | re.MULTILINE)    
     return ''.join(matches)
 
 def generate_unique_stylesheet_name(component_name):
-    """Generates a unique stylesheet name using the component name as part of the hash input."""
-    # Combine the component name with the current timestamp to ensure uniqueness
     input_for_hash = component_name
-    # Use SHA256 hashing to generate a unique identifier
     sha256_hash = hashlib.sha256(input_for_hash.encode('utf-8')).hexdigest()[:8]
-    # Return the hashed value as the unique stylesheet name
     return f"{component_name}-{sha256_hash}.css"
 
-def link_stylesheet_in_head(html_content, stylesheet_path):
-    """Links the given stylesheet in the HTML file's head section."""
-    head_tag = re.search('<head>', html_content)
-    if head_tag:
-        head_content = head_tag.group(0)
-        link_tag = f'<link rel="stylesheet" href="{stylesheet_path}" type="text/css">'
-        return html_content.replace(head_content, head_content + link_tag)
-    return html_content
 
 def add_link_tag_to_index_file(index_file, stylesheet_name):
-    # Define the link tag
-    link_tag = f'\n<link rel="stylesheet" href="{stylesheet_name}" type="text/css">'
-    
-    # Find the start and end indices of the <head> section
+    link_tag = f'\n<link rel="stylesheet" href="`./{component_styles_output_dir_name}/{stylesheet_name}`" type="text/css">'
     head_start_index = index_file.find('<head>') + len('<head>')
     head_end_index = index_file.find('</head>')
     
     if head_start_index != -1 and head_end_index != -1:
-        # Extract the existing <head> section content excluding the opening and closing tags
         head_section = index_file[head_start_index:head_end_index].strip()
-        
-        # Correctly reconstruct the <head> section with the link tag included, ensuring no duplicate <head> tags
-        # We do not add <head> tags here as they are already present in the original content
         new_head_section = head_section + link_tag
-        
-        # Replace the old <head> section content with the new one, ensuring we only replace the content and not the tags themselves
         index_file = index_file.replace(head_section, new_head_section, 1)
     else:
         raise Exception(f"No <head> tag found in input index.html file")
-    
+    print(f"Added link tag with '{stylesheet_name} to <head>'")
     return index_file
 
 def create_stylesheet(style_content, component_name):
     stylesheet_name = generate_unique_stylesheet_name(component_name)
-    with open(os.path.join(dist_dir, stylesheet_name), 'w') as stylesheet_file:
+    output_path = f'{dist_dir}{component_styles_output_dir_name}/'
+    os.makedirs(output_path, exist_ok=True)
+    with open(os.path.join(output_path, stylesheet_name), 'w') as stylesheet_file:
         stylesheet_file.write(style_content)
+    print(f"Created '{output_path}/{stylesheet_name}'")
     return stylesheet_name
 
 def isComponent(line):
@@ -136,7 +131,7 @@ def build_project():
         os.makedirs('./dist')
     
     try:
-        with open(index_file_path, 'r') as index_file:
+        with open(input_index_file_path, 'r') as index_file:
             html_content = index_file.read()
         
         lines = html_content.split('\n')
@@ -162,21 +157,24 @@ def build_project():
                 print(e)
                 print("Incomplete build due to missing components.")
                 return  # Exit the function early if an error occurs
-        # Join the processed lines back into a single string
-        output_html_content = '\n'.join(output_lines)
+            
+        
+        output_html_content = '\n'.join(output_lines) # Join the processed lines back into a single string
         for stylesheet_name in stylesheets_to_append:
             output_html_content = add_link_tag_to_index_file(output_html_content, stylesheet_name)
 
-        with open(output_file_path, 'w') as output_file:
+        with open(output_index_file_path, 'w') as output_file:
             output_file.write(output_html_content)
         
-        copy_styles_to_dist()
+        copy_directory_content(styles_dir, dist_dir)
+        copy_directory_content(assets_dir, dist_dir)
         print("Build complete.")
     except FileNotFoundError as fnf_error:
         print(fnf_error)
         print("Incomplete build due to missing components.")
 
 if __name__ == "__main__":
+    build_project() # initial build
     event_handler = CustomEventHandler()
     observer = Observer()
     observer.schedule(event_handler, path=os.path.dirname(absolute_components_dir), recursive=True)
