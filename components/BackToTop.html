@@ -1,0 +1,78 @@
+<template>
+  <a href="#home" class="back-to-top">
+    <div class="container">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="24px"
+        viewBox="0 -960 960 960"
+        width="24px"
+        fill="var(--color-icon)"
+      >
+        <path
+          d="M440-160v-487L216-423l-56-57 320-320 320 320-56 57-224-224v487h-80Z"
+        />
+      </svg>
+    </div>
+    <div class="shadow"></div>
+  </a>
+</template>
+
+<style>
+  .back-to-top{
+    all:unset;
+    width:40px;
+    height:40px;
+  
+    position:fixed;
+    bottom:0;
+    right:0;
+    margin: 2rem;
+    
+    cursor: pointer;
+    animation: scroll-in--back-to-top linear;
+    animation-timeline: scroll();
+    
+    .container{
+      position:relative;
+      width:100%;
+      height: 100%;
+      z-index: 2;
+      border-radius:50%;
+      background:white;
+      display:grid;
+      place-items: center;
+    }
+    /* performant shadow*/
+    .shadow{
+      content:'';
+      position:absolute;
+      border-radius: 50%;
+      width:100%;
+      height: 100%;
+      z-index: 1;
+      /* box shadow variables */
+      top:2px;
+      left: 2px;
+      background:black;
+      filter: blur(6px);
+      opacity:0.25;
+    }
+  }
+  
+  @keyframes scroll-in--back-to-top{
+    from {
+      pointer-events: none;
+      opacity:0
+    }
+    6% {
+      opacity:0;
+    }
+    10% {
+      pointer-events:all;
+      opacity:1;
+    }
+    to {
+      opacity:1;
+    }
+  }
+</style>

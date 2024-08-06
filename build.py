@@ -79,7 +79,7 @@ def generate_unique_stylesheet_name(component_name):
 
 
 def add_link_tag_to_index_file(index_file, stylesheet_name):
-    link_tag = f'\n<link rel="stylesheet" href="`./{component_styles_output_dir_name}/{stylesheet_name}`" type="text/css">'
+    link_tag = f'\n<link rel="stylesheet" href="./{component_styles_output_dir_name}/{stylesheet_name}" type="text/css">'
     head_start_index = index_file.find('<head>') + len('<head>')
     head_end_index = index_file.find('</head>')
     
