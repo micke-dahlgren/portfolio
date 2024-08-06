@@ -1,1 +1,3 @@
 ignore/
+.vscode/
+.venv/
