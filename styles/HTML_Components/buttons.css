@@ -1,0 +1,30 @@
+
+.button{
+  all:unset;
+  background:hotpink;
+  padding: 1.4em 2.5em;
+  border-radius: 8px;
+  font-size:1rem;
+  font-weight:400;
+  cursor:pointer;
+
+}
+
+.button.primary {
+  background:var(--color-primary);
+  color:white;
+  transition: outline 100ms ease;
+  outline:solid color-mix(in hsl, transparent 100%, var(--color-secondary)) 0px;
+  &:focus{
+    outline:solid color-mix(in hsl, transparent 30%, var(--color-secondary)) 4px; 
+  }
+  &:hover{
+    background:color-mix(in hsl, black 20%, var(--color-primary));
+    outline:solid color-mix(in hsl, transparent 20%, var(--color-secondary)) 4px;
+  }
+
+  &:active{
+    background:color-mix(in hsl, black 30%, var(--color-primary));
+    outline:solid color-mix(in hsl, transparent 20%, var(--color-secondary)) 6px;
+  }
+}

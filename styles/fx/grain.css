@@ -1,0 +1,24 @@
+.grain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  pointer-events: none;
+  z-index: 0;
+  /* use transform to hide this element before other css has loaded. */
+  transform: scale(0); 
+}
+
+.grain:after {
+  content: "";
+  position: fixed;
+  top: -5vmax;
+  left: -5vmax;
+  width: calc(110vmax);
+  height: calc(110vmax);
+  background-image: url(noise.svg);
+  transform: rotate(0deg);
+  background-repeat: repeat;
+  pointer-events: none;
+}
