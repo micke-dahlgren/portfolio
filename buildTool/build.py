@@ -17,12 +17,15 @@ def build_project():
             try:
                 # handle component html template
                 component_name = get_component_name(line)
-                component_data = get_component_file_content(component_name)
-                updated_line = get_component_html_template(component_data)
-                output_lines.append(updated_line)
+                component_props = get_component_props(line)
+                component_file_content = get_component_file_content(component_name)
+                component_template = get_component_html_template(component_file_content)
+                if component_props:
+                    component_template = insert_component_props(component_template, component_props)
+                output_lines.append(component_template)
 
                 # handle component styles
-                style_content = get_component_styles(component_data)
+                style_content = get_component_styles(component_file_content)
                 if style_content:
                     stylesheet_name = create_stylesheet(style_content, component_name)
                     stylesheets_to_append.append(stylesheet_name)

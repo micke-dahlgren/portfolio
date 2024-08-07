@@ -2,6 +2,8 @@ import re
 import hashlib
 from config import *
 
+
+''' component parsing '''
 def isComponent(line):
     component_pattern = r'<_(\w+)(?:\s[^>]*)?>'
     return re.search(component_pattern, line)
@@ -21,12 +23,36 @@ def get_component_html_template(component_data):
         raise Exception("No template tag found in the provided HTML content.")
     return html_template
 
+def get_component_props(line):
+    attr_regex = r'(\w+)="([^"]*)"'
+    matches = re.findall(attr_regex, line)
+    props_dict = {key: value for key, value in matches}
+    if props_dict:
+        return props_dict
+
+def insert_component_props(component_template, component_props):
+    # Pattern to match keys enclosed in double curly braces {{key}}
+    pattern = r"\{\{(\s*[\w\s]+?\s*)\}\}"
+    
+    # Iterate over each match in the component_template
+    for match in re.finditer(pattern, component_template):
+        propKey = match.group(1).strip()
+        replaceMatch = match.group(0)
+        
+        if propKey in component_props:
+            replacement_value = component_props[propKey]
+            component_template = component_template.replace(replaceMatch, replacement_value)
+        else:
+            raise KeyError(f"Key '{replaceMatch}' not found in component_props")
+    return component_template
+
 
 def get_component_styles(component_data):
     style_content = re.findall(r'<style[^>]*>(.*?)</style>', component_data, flags=re.DOTALL | re.MULTILINE)
     return ''.join(style_content)
 
 
+''' stylesheet utils '''
 def generate_unique_stylesheet_name(component_name):
     input_for_hash = component_name
     sha256_hash = hashlib.sha256(input_for_hash.encode('utf-8')).hexdigest()[:8]
