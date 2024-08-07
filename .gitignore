@@ -3,3 +3,4 @@ ignore/
 .venv/
 dist/
 dist/index.html
+__pycache__/
