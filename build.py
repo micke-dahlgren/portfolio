@@ -1,7 +1,6 @@
 import os
 import shutil
 import re
-import shutil
 import hashlib
 from watchdog.observers import Observer
 from watchdog.events import LoggingEventHandler
@@ -25,13 +24,8 @@ class CustomEventHandler(LoggingEventHandler):
         # Check if the modified file is index.html
         if event.src_path == absolute_index_file_path or event.src_path.startswith(absolute_components_dir) or event.src_path.startswith(absolute_styles_dir):
             print("Changes detected. Rebuilding...")
-            build_project()
-
-import shutil
-import os
-
-import os
-import shutil
+            build_project()            
+            
 
 def copy_directory_content(source, destination):
     # Ensure the source directory exists
