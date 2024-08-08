@@ -4,13 +4,20 @@ from config import *
 
 
 ''' component parsing '''
-def isComponent(line):
-    component_pattern = r'<_(\w+)(?:\s[^>]*)?>'
+def get_component_match(line):
+    component_pattern = r'<_(\w+)(?:\s[^>]*)'
     return re.search(component_pattern, line)
 
+def has_closing_tag(line):
+    component_pattern = r'.*/>'
+    return bool(re.search(component_pattern, line))
+
+def has_component_opening_tag(line):
+    component_pattern = r'^\s*<_'
+    return bool(re.search(component_pattern, line))
 
 def get_component_name(line):
-    match = isComponent(line)
+    match = get_component_match(line)
     if match:
         return match.group(1)
     raise Exception(f"Missing component match on line: \n '{line}'")
@@ -29,6 +36,7 @@ def get_component_props(line):
     props_dict = {key: value for key, value in matches}
     if props_dict:
         return props_dict
+    return {}
 
 def insert_component_props(component_template, component_props):
     # Pattern to match keys enclosed in double curly braces {{key}}

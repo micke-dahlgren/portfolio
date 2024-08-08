@@ -1,3 +1,8 @@
+'''build conf'''
+config = {
+  'minify': True,
+}
+
 ''' relative input paths'''
 styles_dir = '../styles/'
 assets_dir = '../assets/'
