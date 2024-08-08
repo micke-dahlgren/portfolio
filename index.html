@@ -4,6 +4,7 @@
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="preload" href="./assets/profile/profile-loading-xs.webp" as="image/webp">
     <style>
       /* variables */
       :root { 
@@ -13,6 +14,18 @@
   </head>
   <body>
     <_Header title="Mikael Dahlgren" />
+  
+      <_Image 
+        width="800px" 
+        height="800px" 
+        loadingSrc="./assets/profile/profile-loading-xs.webp" 
+        avifSrcset="./assets/profile/profile-800.avif 800w, ./assets/profile/profile-600.avif 600w, ./assets/profile/profile-400.avif 400w" 
+        webpSrcset="./assets/profile/profile-800.webp 800w, ./assets/profile/profile-600.webp 600w, ./assets/profile/profile-400.webp 400w" 
+        fallbackSrcset="./assets/profile/profile-800.jpeg 800w, ./assets/profile/profile-600.jpeg 600w, ./assets/profile/profile-400.jpeg 400w" 
+        loadingSrc="./assets/profile/profile-loading-xs.webp" 
+        fallbackMaskSrc="./assets/profile/profile-mask-hires.png"
+        sizes="33w"
+      />
       <h1>Discover my interactive web designs.</h1>
       <p>
         Join me on a journey through my creative portfolio. Let's build

@@ -1,0 +1,45 @@
+<template>
+    <div class="img-container">
+      <img  style="
+        position: absolute;
+        mask-image: url({{fallbackMaskSrc}});
+        mask-repeat: no-repeat;
+        mask-size: contain;
+        " 
+      decoding="sync" 
+      src="{{loadingSrc}}" 
+      fetchpriority="high" 
+      width="{{width}}" 
+      height="{{height}}">
+    </img>
+      <picture>
+        <source type="image/avif" srcset="{{avifSrcset}}" />
+        <source type="image/webp" srcset="{{webpSrcset}}" />
+        <source srcset="{{fallbackSrcset}}" />
+        <img 
+          style="
+          position: absolute;
+          mask-image: url({{fallbackMaskSrc}});
+          mask-repeat: no-repeat;
+          mask-size: contain;
+          "
+          src="{{loadingSrc}}"
+          decoding="async" 
+          loading="lazy" 
+          fetchpriority="low" 
+          width="{{width}}" 
+          height="{{height}}" 
+          sizes="{{sizes}}">
+        </img>
+      </picture>  
+    </div>
+</template>
+
+<style>
+.img-container{
+  position:relative;
+  width:{{width}};
+  height:{{height}};
+}
+
+</style>
