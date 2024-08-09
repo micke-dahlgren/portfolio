@@ -1,17 +1,105 @@
 
 
 <template>
-  <header>
-    <p>{{ title }} it works</p>
-      <ul id="menu" class="flex-row" role="menu">
-        <li role="menu-item"><a href="#home">Home</a></li>
-        <li role="menu-item"><a href="#home">test: {{ title }}</a></li>
-      </ul>
-  </header>
+  <section class="header-wrapper">
+    <div role="presentation" class="header--position header--shape shadow"></div>
+
+    <header class="header--position header--shape header--visual">
+        <ul id="menu" class="menu--container menu--shape menu--visual" role="menu">
+          <li id="home" class="menu-item" role="menu-item"><a href="#home">Home</a></li>
+          <li id="portfolio" class="menu-item" role="menu-item"><a href="#portfolio">Portfolio</a></li>
+          <li id="about" class="menu-item" role="menu-item"><a href="#about">About</a></li>
+          <li id="linkedin" class="menu-item menu-item--push-right" role="menu-item"><a href="#linkedin">LinkedIn</a></li>
+          <li id="contact" class="menu-item" role="menu-item"><a href="#contact">Contact</a></li>
+        </ul>
+    </header>
+    
+  </section>
 </template>
 <style>
-  #menu{
-    background:pink;
-    color:white;
+  .header-wrapper{
+    --max-width: 1280px;
+    position:relative;
+    margin-top:1rem;
+    display:flex;
+    justify-content: center;
+
+    ul{
+      margin:0;
+      padding:0;
+    }
   }
+  @media only screen and (max-width: calc(1280px + 2rem)) {
+    .header-wrapper{
+    --max-width: 720px;
+    }
+  }
+
+  .shadow{
+    background:black;
+    filter: blur(4px);
+    mix-blend-mode: overlay;
+  }
+
+  .header--shape{
+    box-sizing: border-box;
+    width:100%;
+    max-width: min(var(--max-width), calc(100vw - 4rem));
+    height: 3rem;
+    border-radius:3rem;
+    padding: 0 2rem;
+  }
+  .header--position{
+    position:fixed;
+    z-index: 2;
+  }
+
+  .header--visual{
+    background-color: white;
+  }
+
+
+  /* menu items */
+  .menu--container{
+    display:flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .menu--shape{
+    height:100%;
+    width:100%;
+  }
+
+  .menu--visual{
+    list-style: none;
+  }
+
+  #menu{
+    .menu-item--push-right{
+      text-align: right;
+      margin-left: auto;
+    }
+    .menu-item > a{
+      text-decoration: none;
+      color: var(--color-text);
+      font-size: 1rem;
+      font-weight: 400;
+      text-shadow:
+        0pt 0pt 0 var(--color-text),
+        -0pt 0pt 0 var(--color-text),
+        -0pt -0pt 0 var(--color-text),
+        0pt -0pt 0 var(--color-text);
+    
+      transition: text-shadow 0.2s;
+    }
+    .menu-item:target > a {
+      text-shadow:
+        0.3pt 0.3pt 0 var(--color-text),
+        -0.3pt 0.3pt 0 var(--color-text),
+        -0.3pt -0.3pt 0 var(--color-text),
+        0.3pt -0.3pt 0 var(--color-text);
+    }
+  }
+
 </style>
