@@ -4,6 +4,24 @@
 @import url('./HTML_Components/buttons.css');
 @import url('./fx/grain.css');
 
-body{
-  background-color: var(--color-background);
+html{
+  background:var(--color-background);
+}
+.body-bg{
+  position:absolute;
+  top:0;
+  left:0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  
+  .body-bg--top-gradient{
+    height: 80vh;
+    width:100%;
+    background: rgb(255,251,245);
+    background: -moz-radial-gradient(closest-side, #fffbf5 46%, transparent 100%);
+    background: -webkit-radial-gradient(closest-side, #fffbf5 46%, transparent 100%);
+    background: radial-gradient(closest-side, #fffbf5 46%, transparent 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fffbf5",endColorstr="transparent",GradientType=1);
+  }
 }
