@@ -18,15 +18,20 @@
         --color-primary: #4353eb;
         --color-background: #FAEDDA;
         --color-text: #202020;
+        --color-text-secondary: #817561;
       }
     </style>
   </head>
-  <body>
+  <body id="home">
     <_Header title="Mikael Dahlgren" />
-  
+    <Section class="hero-section" >
+      <h1>Efficient Code,<br/>Elegant Experiences</h1>
+      <p>Hello. Explore my work and get in touch if you'd like to<br/>create something amazing together.</p>
+      <button class="button primary fit-content">Explore projects</button>
+      <div class="hero-image">
       <_Image 
-        width="800px" 
-        height="800px" 
+        width="900px" 
+        height="900px" 
         loadingSrc="./assets/profile/profile-loading-xs.webp" 
         avifSrcset="./assets/profile/profile-800.avif 800w, ./assets/profile/profile-600.avif 600w, ./assets/profile/profile-400.avif 400w" 
         webpSrcset="./assets/profile/profile-800.webp 800w, ./assets/profile/profile-600.webp 600w, ./assets/profile/profile-400.webp 400w" 
@@ -35,7 +40,13 @@
         fallbackMaskSrc="./assets/profile/profile-mask-hires.png"
         sizes="33w"
       />
-      <h1>Discover my interactive web designs.</h1>
+      <div class="text-overlay">
+        <h2>Hello.<br /> I'm <span>Mikael</span></h2>
+        <p class="lead-text"> check out some of <br /> my work </p>
+      </div>
+    </div>
+    </Section>
+      <h2>Discover my interactive web designs.</h2>
       <p>
         Join me on a journey through my creative portfolio. Let's build
         something amazing together.

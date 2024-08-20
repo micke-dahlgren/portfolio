@@ -73,6 +73,11 @@ def append_stylesheet_link_tag(index_file, stylesheet_name):
     
     if head_start_index != -1 and head_end_index != -1:
         head_section = index_file[head_start_index:head_end_index].strip()
+        # Check if the stylesheet link already exists
+        if any(link.endswith(f'="{stylesheet_name}"') for link in head_section.split('\n')):
+            print(f"'{stylesheet_name}' already exists in <head>, skipping.")
+            return index_file
+
         new_head_section = head_section + link_tag
         index_file = index_file.replace(head_section, new_head_section, 1)
     else:

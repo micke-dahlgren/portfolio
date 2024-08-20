@@ -49,7 +49,6 @@ def build_project():
 
         doParse = False
         for line in lines:
-            
             hasComponentOpeningTag = has_component_opening_tag(line)
             hasClosingTag = has_closing_tag(line)
             if hasComponentOpeningTag:

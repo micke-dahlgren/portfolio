@@ -25,3 +25,66 @@ html{
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fffbf5",endColorstr="transparent",GradientType=1);
   }
 }
+
+.hero-section{
+  margin-top: 15rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  
+  h1{
+    font-size: max(min(5vw, 5.25rem), 2.5rem);
+    width: 800px;
+    padding:0;
+    margin:0;
+    
+  }
+
+  p{
+    margin-top:max(min(4vw,  4rem), 2rem);
+    font-size: 1.75rem;
+    font-size: max(min(1.75vw,  1.75rem), 1rem);
+
+    line-height: 1.65;
+    color:var(--color-text-secondary);
+  }
+
+  button{
+    margin-top:2rem;
+  }
+  
+  .hero-image{
+    margin-top:10rem;
+    margin-left: 2vw;
+    width:fit-content;
+    position: relative;
+  }
+
+  .text-overlay{
+    position:absolute;
+    top:0;
+    display:flex;
+    justify-content: space-between;
+    height:100%;
+    width:100%;
+  
+    h2{
+      margin-top:auto;
+      margin-bottom:0;
+      text-align: left;
+      font-size: max(min(5vw, 5.25rem), 2.5rem);
+      span{
+        color: var(--color-primary);
+      }
+    }
+    .lead-text{
+      margin-top:auto;
+      margin-bottom:0;
+      color:var(--color-primary);
+      font-size:  1.5rem;
+    }
+  }
+}

@@ -4,10 +4,9 @@
   background:hotpink;
   padding: 1.4em 2.5em;
   border-radius: 8px;
-  font-size:1rem;
-  font-weight:400;
+  font-size:1.25rem;
+  font-weight:600;
   cursor:pointer;
-
 }
 
 .button.primary {
@@ -26,5 +25,8 @@
   &:active{
     background:color-mix(in hsl, black 30%, var(--color-primary));
     outline:solid color-mix(in hsl, transparent 20%, var(--color-secondary)) 6px;
+  }
+  &.fit-content{
+    max-width: fit-content;
   }
 }
